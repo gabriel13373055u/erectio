@@ -1,0 +1,103 @@
+/* -------------------------------------------------
+   layout/_align.scss – layout helpers & spacing
+   -------------------------------------------------- */
+@use '../base/design' as *;
+
+/* -------------------------------------------------
+   1. Flow‑helpers (margin utilities)
+   -------------------------------------------------- */
+//  Używaj tylko wtedy, gdy potrzebujesz podbić/zerować odstęp
+//  w wyjątkowych sytuacjach — zamiast wrzucać inline‑styles.
+
+.u-mb-0 {
+	margin-bottom: 0 !important;
+}
+.u-mb-s {
+	margin-bottom: $gap-s !important;
+}
+.u-mb-m {
+	margin-bottom: $gap-m !important;
+}
+.u-mb-l {
+	margin-bottom: $gap-l !important;
+}
+
+.u-mt-0 {
+	margin-top: 0 !important;
+}
+.u-mt-s {
+	margin-top: $gap-s !important;
+}
+.u-mt-m {
+	margin-top: $gap-m !important;
+}
+.u-mt-l {
+	margin-top: $gap-l !important;
+}
+
+/* -------------------------------------------------
+   2. Text alignment helpers
+   -------------------------------------------------- */
+.u-text-left {
+	text-align: left !important;
+}
+.u-text-center {
+	text-align: center !important;
+}
+.u-text-right {
+	text-align: right !important;
+}
+
+/* -------------------------------------------------
+   3. Flexbox centering (shorthand dla prototypów / drobnych sekcji)
+   -------------------------------------------------- */
+.u-flex {
+	display: flex !important;
+}
+.u-inline-flex {
+	display: inline-flex !important;
+}
+.u-flex-center {
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+}
+
+/* -------------------------------------------------
+   4. Max‑width container (fluid)
+   -------------------------------------------------- */
+.l-container {
+	max-width: 126rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $gap-m;
+	padding-right: $gap-m;
+
+	@include respond(tablet, max) {
+		padding-left: $gap-s;
+		padding-right: $gap-s;
+	}
+}
+
+/* -------------------------------------------------
+   5. Section wrapper
+   -------------------------------------------------- */
+.l-section {
+	padding: clamp($gap-l, 5vw, 8rem) 0;
+}
+
+/* -------------------------------------------------
+   6. Grid helpers (auto‑fit)
+   -------------------------------------------------- */
+.l-grid {
+	display: grid;
+	gap: $gap-m;
+
+	&--2 {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+	}
+
+	&--3 {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+	}
+}

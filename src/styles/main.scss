@@ -1,0 +1,27 @@
+/* 1) Abstracts / baza */
+
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+@use 'abstracts/variables';
+
+/* 1.1) Base */
+
+@use 'base/align';
+@use 'base/base'; // elementy HTML
+@use 'base/design'; // zmienne & mixiny
+@use 'base/reset';
+@use 'base/typography'; // typografia
+
+/* 2) Utilities, które mogą nadpisać coś wyżej */
+@use 'utilities/animations';
+@use 'utilities/global';
+@use 'utilities/scroll-to-top';
+@use 'utilities/scrollbar';
+
+/* 3) Components */
+@use 'components/nav';
+@use 'components/footer';
+
+/* 4) Layout */
+@use 'layout/buttons';
+@use 'layout/links';

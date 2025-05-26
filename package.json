@@ -1,0 +1,34 @@
+{
+  "name": "erectio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "eslint": "^9.27.0",
+    "eslint-plugin-import": "^2.31.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-svgo": "^11.0.1",
+    "postcss": "^8.5.3",
+    "postcss-preset-env": "^10.1.6",
+    "rollup-plugin-critical": "^1.0.15",
+    "rollup-plugin-visualizer": "^6.0.0",
+    "sass": "^1.89.0",
+    "vite": "^6.3.5",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-full-reload": "^1.2.0",
+    "vite-plugin-imagemin": "^0.6.1",
+    "vite-plugin-mpa-plus": "^0.6.0",
+    "vite-plugin-pwa": "^1.0.0",
+    "vite-plugin-robots": "^1.0.5",
+    "vite-plugin-sitemap": "^0.8.2",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vite-plugin-webfont-dl": "^3.10.4"
+  }
+}

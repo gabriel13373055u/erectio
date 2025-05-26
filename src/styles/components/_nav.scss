@@ -1,0 +1,196 @@
+/* -------------------------------------------------
+   components/_nav.scss – primary site navigation
+   -------------------------------------------------- */
+@use 'sass:math';
+@use '../base/design' as *; // tokeny kolorów, mixin respond()
+
+.nav {
+	background: $color-bg;
+	box-shadow: 0 0.1rem 0.4rem rgba($color-black, 0.05);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+
+	/* --- wrapper --------------------------------- */
+	&__container {
+		max-width: 126rem;
+		margin-inline: auto;
+		padding-inline: $gap-m;
+		height: 7.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	/* --- logo ------------------------------------ */
+	&__logo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.8rem;
+		font: 600 #{math.div($fs-h4, 1)}/ 1 #{$font-heading};
+		color: $color-text;
+		text-decoration: none;
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	/* --- hamburger / toggle ---------------------- */
+	&__toggle {
+		display: none;
+		background: none;
+		border: none;
+		padding: $gap-xs;
+		cursor: pointer;
+
+		@include respond(tablet, max) {
+			// widoczny ≤ tablet
+			display: inline-flex;
+		}
+
+		&-line,
+		&-line::before,
+		&-line::after {
+			content: '';
+			display: block;
+			width: 2.4rem;
+			height: 0.2rem;
+			background: $color-text;
+			border-radius: 0.1rem;
+			transition: transform 0.3s, opacity 0.3s;
+		}
+
+		&-line::before {
+			transform: translateY(-0.7rem);
+		}
+		&-line::after {
+			transform: translateY(0.5rem);
+		}
+	}
+
+	/* --- main list ------------------------------- */
+	&__list {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+		list-style: none;
+
+		@include respond(tablet, max) {
+			position: fixed;
+			inset: 0 0 0 auto;
+			width: 26rem;
+			flex-direction: column;
+			padding: 12rem $gap-l $gap-l;
+			background: $color-bg;
+			transform: translateX(100%);
+			transition: transform 0.3s ease;
+			overflow-y: auto;
+		}
+	}
+
+	&__item {
+		position: relative;
+
+		/* --- CTA button --------------------------- */
+		&--cta .nav__link--cta {
+			display: inline-block;
+			padding: 0.9rem 2.4rem;
+			border-radius: $radius-s;
+			background: $color-primary;
+			color: $color-white;
+			font-weight: 600;
+			transition: background 0.25s;
+			&:hover {
+				background: $color-primary-hover;
+			}
+		}
+
+		/* --- dropdown logic ---------------------- */
+		&--dropdown {
+			@include respond(desktop) {
+				// hover na desktopie
+				&:hover > .nav__sublist {
+					opacity: 1;
+					visibility: visible;
+					transform: translateY(0);
+				}
+			}
+
+			> .nav__link[aria-expanded='true'] + .nav__sublist {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
+	}
+
+	&__link {
+		position: relative;
+		font: 400 #{math.div($fs-sm, 1)}/ 1 #{$font-main};
+		color: $color-text;
+		text-decoration: none;
+		transition: color 0.2s;
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	/* --- sublist (dropdown) ---------------------- */
+	&__sublist {
+		list-style: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 22rem;
+		margin: 0;
+		padding: $gap-s 0;
+		background: $color-bg;
+		border: 0.1rem solid rgba($color-black, 0.05);
+		border-radius: $radius-s;
+		box-shadow: 0 0.4rem 1.8rem rgba($color-black, 0.1);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(1rem);
+		transition: all 0.2s;
+		z-index: 10;
+
+		@include respond(tablet, max) {
+			position: static;
+			border: 0;
+			box-shadow: none;
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: none !important;
+			padding-left: $gap-s;
+		}
+	}
+
+	&__sublink {
+		display: block;
+		padding: 0.8rem 2rem;
+		font: 400 #{math.div($fs-xs, 1)}/ 1 #{$font-main};
+		color: $color-text;
+		white-space: nowrap;
+		transition: background 0.2s, color 0.2s;
+		&:hover {
+			background: rgba($color-primary, 0.08);
+			color: $color-primary;
+		}
+	}
+
+	/* --- states ---------------------------------- */
+	&.is-open {
+		.nav__list {
+			transform: translateX(0);
+		}
+		.nav__toggle-line {
+			transform: rotate(45deg);
+		}
+		.nav__toggle-line::before {
+			opacity: 0;
+		}
+		.nav__toggle-line::after {
+			transform: rotate(-90deg) translateX(-0.7rem);
+		}
+	}
+}
